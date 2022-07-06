@@ -7,14 +7,12 @@ def read_json(path_to_json: str) -> dict:
     python dict
     """
     # open JSON file
-    f = open(path_to_json)  
-
-    # return pythonic dictionary object
-    data = json.load(f)
-
-    # close the file
-    f.close()
-    return data
+    with open(path_to_json, 'r', encoding='utf-8') as r:
+        try:
+            data = json.load(r)
+            return data
+        except json.decoder.JSONDecodeError:
+            raise ValueError("File is not JSON correctly formatted")
 
 
 def is_correct_cycle(stack: list, all_cycles: list) -> bool:
