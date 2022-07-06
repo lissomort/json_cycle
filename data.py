@@ -20,3 +20,7 @@ def read_json(path_to_json):
     # close the file
     f.close()
     return data
+
+
+def stack2list(stack):
+    return [name for name in stack if stack[name]]
